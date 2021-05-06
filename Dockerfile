@@ -19,15 +19,17 @@ RUN jupyter nbextension enable  --py --sys-prefix graph_notebook.widgets
 RUN python -m graph_notebook.static_resources.install
 RUN python -m graph_notebook.nbextensions.install
 
-# copy premade starter notebooks
-
 RUN python -m pip install ipykernel
 RUN python -m ipykernel install --user
 
 RUN pip install boto3
 
-RUN mkdir -p $HOME/notebook/destination/dir
+RUN mkdir -p $HOME/notebook
 
-WORKDIR $HOME/notebook/destination/dir
+WORKDIR $HOME/notebook
 
-ENTRYPOINT ["/bin/bash", "-c", "jupyter notebook --NotebookApp.token='' --allow-root --ip=0.0.0.0 --port=8888 ~/notebook/destination/dir"]
+# copy premade starter notebooks
+RUN python -m graph_notebook.notebooks.install --destination ~/notebook/examples
+
+ENTRYPOINT ["/bin/bash", "-c", "jupyter notebook --NotebookApp.token='' --allow-root --ip=0.0.0.0 --port=8888 ~/notebook"]
+
