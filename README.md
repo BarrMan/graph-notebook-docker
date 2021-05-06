@@ -13,7 +13,7 @@ graph-notebook:
     ports:
       - "8888:8888"
     volumes:
-      - {pathToIpynbFiles}:/root/notebook/host
+      - {pathToIpynbFiles}:/root/notebook
     depends_on:
       - gremlin
 ```
