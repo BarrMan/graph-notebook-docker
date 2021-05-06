@@ -24,6 +24,12 @@ RUN python -m ipykernel install --user
 
 RUN pip install boto3
 
+# add nbextensions
+RUN pip install jupyter_contrib_nbextensions
+RUN pip install jupyter_nbextensions_configurator
+RUN jupyter contrib nbextension install
+RUN jupyter nbextensions_configurator enable
+
 RUN mkdir -p $HOME/notebook
 
 WORKDIR $HOME/notebook
@@ -32,4 +38,3 @@ WORKDIR $HOME/notebook
 RUN python -m graph_notebook.notebooks.install --destination ~/notebook/examples
 
 ENTRYPOINT ["/bin/bash", "-c", "jupyter notebook --NotebookApp.token='' --allow-root --ip=0.0.0.0 --port=8888 ~/notebook"]
-
