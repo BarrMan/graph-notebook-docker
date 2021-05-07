@@ -28,6 +28,6 @@ RUN pip install boto3
 
 RUN mkdir -p $HOME/notebook/destination/dir
 
-WORKDIR $HOME/notebook/destination/dir
+COPY GraphVisualization.ipynb /root/notebook/destination/dir
 
 ENTRYPOINT ["/bin/bash", "-c", "jupyter notebook --NotebookApp.token='' --allow-root --ip=0.0.0.0 --port=8888 ~/notebook/destination/dir"]
