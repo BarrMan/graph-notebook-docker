@@ -37,4 +37,6 @@ WORKDIR $HOME/notebook
 # copy premade starter notebooks
 RUN python -m graph_notebook.notebooks.install --destination ~/notebook/examples
 
+COPY GraphVisualization.ipynb /root/notebook
+
 ENTRYPOINT ["/bin/bash", "-c", "jupyter notebook --NotebookApp.token='' --allow-root --ip=0.0.0.0 --port=8888 ~/notebook"]
