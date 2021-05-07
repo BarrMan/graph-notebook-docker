@@ -19,4 +19,5 @@ graph-notebook:
 ```
 
 You can also use it via command line to mount the local ~/notebook folder within the docker image:
+
 `docker run -p 8888:8888 -v ~/notebook:/root/notebook barrman/graph-notebook:latest`
