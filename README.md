@@ -1,4 +1,4 @@
-# Graph Noatebook Docker Image
+# Graph Notebook Docker Image
 
 Dockerfile based on https://github.com/aws/graph-notebook
 
