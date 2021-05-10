@@ -11,12 +11,18 @@ Initially, graph-notebook docker image comes with `GraphVisualization.ipynb` sta
 
 In order to add custom notebooks, you may use the volumes and override/add to `/root/notebook/destination/dir/`.
 ```
-graph-notebook:
+version: '3.4'
+
+services:
+  gremlin:
+      image: barrman/gremlin-server
+      ports:
+        - '8182:8182'
+  
+  graph-notebook:
     image: barrman/graph-notebook:latest
     ports:
       - "8888:8888"
-    volumes:
-      - {pathToIpynbFiles}:/root/notebook/destination/dir/
     depends_on:
       - gremlin
 ```
